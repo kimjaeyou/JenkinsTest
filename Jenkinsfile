@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'kimjaeyoung98/my-node-app'
+        IMAGE_NAME = 'kimjaeyoung98/my-node-app_Jenkins'
         VERSION = "build-${env.BUILD_ID}"
     }
 
