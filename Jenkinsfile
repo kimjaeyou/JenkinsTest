@@ -1,22 +1,34 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = 'kimjaeyou/my-node-app'
+        VERSION = "build-${env.BUILD_ID}"
+    }
+
     stages {
         stage('Clone') {
             steps {
                 git branch: 'main', url: 'https://github.com/kimjaeyou/JenkinsTest.git'
             }
         }
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
                 script {
-                    docker.build('my-node-app')
+                    docker.build("${IMAGE_NAME}:${VERSION}")
                 }
             }
         }
-        stage('Run Docker Container') {
+        stage('DockerHub Login & Push') {
             steps {
-                sh 'docker run -d -p 3000:3000 --name my-node-test my-node-app || true'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PW', usernameVariable: 'DOCKER_USER')]) {
+                    sh '''
+                        echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker tag ${IMAGE_NAME}:${VERSION} ${IMAGE_NAME}:latest
+                        docker push ${IMAGE_NAME}:${VERSION}
+                        docker push ${IMAGE_NAME}:latest
+                    '''
+                }
             }
         }
     }
