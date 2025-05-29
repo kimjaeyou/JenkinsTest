@@ -36,7 +36,7 @@ pipeline {
             steps {
                 sshagent(['deploy-key']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no kimjaeyoung@192.168.0.3 "powershell -ExecutionPolicy Bypass -File C:\\\\deploy\\\\deploy.ps1 ${VERSION}"
+                        ssh -o StrictHostKeyChecking=no KOSTA@192.168.0.3 "powershell -ExecutionPolicy Bypass -File C:\\\\deploy\\\\deploy.ps1 ${VERSION}"
                     '''
                 }
             }
