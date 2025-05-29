@@ -21,7 +21,7 @@ pipeline {
         }
         stage('DockerHub Login & Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PW', usernameVariable: 'DOCKER_USER')]) {
+                withCredentials([usernamePassword(credentialsId: 'my-node-app', passwordVariable: 'DOCKER_PW', usernameVariable: 'DOCKER_USER')]) {
                     sh '''
                         echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
                         docker tag ${IMAGE_NAME}:${VERSION} ${IMAGE_NAME}:latest
