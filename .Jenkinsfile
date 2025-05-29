@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/사용자/my-node-app.git'
+                git 'https://github.com/kimjaeyou/JenkinsTest.git'
             }
         }
         stage('Build Docker Image') {
