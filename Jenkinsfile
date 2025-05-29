@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/kimjaeyou/JenkinsTest.git'
+                git branch: 'main', url: 'https://github.com/kimjaeyou/JenkinsTest.git'
             }
         }
         stage('Build Docker Image') {
