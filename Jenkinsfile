@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}:${VERSION}")
+                    docker.build("${IMAGE_NAME}:${VERSION}", "--no-cache .")
                 }
             }
         }
