@@ -37,7 +37,7 @@ pipeline {
                 sshagent(['deploy-key']) {
                 sh '''
     ssh -o StrictHostKeyChecking=no kosta@192.168.0.3 whoami
-    ssh -o StrictHostKeyChecking=no kosta@192.168.0.3 dir "C:\\Users\\KOSTA\\deploy"
+    ssh -o StrictHostKeyChecking=no kosta@192.168.0.3 powershell -ExecutionPolicy Bypass -File "C:\\Users\\KOSTA\\deploy\\deploy.ps1" build-31
 '''
 
                 }
