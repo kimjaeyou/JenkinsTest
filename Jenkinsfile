@@ -36,7 +36,7 @@ pipeline {
             steps {
                 sshagent(['deploy-key']) {
                 sh """
-    ssh -o StrictHostKeyChecking=no kosta@192.168.0.3 powershell -Command "Test-Path 'C:\\Users\\KOSTA\\deploy\\deploy.ps1'"
+    ssh -o StrictHostKeyChecking=no kosta@192.168.0.3 powershell -Command "Test-Path 'C:\\deploy\\deploy.ps1'"
 """
 
                 }
