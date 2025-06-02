@@ -35,11 +35,13 @@ pipeline {
         stage('Deploy to Windows Server') {
             steps {
                 sshagent(['deploy-key']) {
-                    sh '''
-                        ssh -o StrictHostKeyChecking=no kosta@192.168.0.3 "powershell -ExecutionPolicy Bypass -File C:\\\\deploy\\\\deploy.ps1 ${VERSION}"
-                    '''
+                    sh """
+                        ssh -o StrictHostKeyChecking=no kosta@192.168.0.3 \\
+                        "powershell -ExecutionPolicy Bypass -File \\"C:\\\\deploy\\\\deploy.ps1\\" ${VERSION}"
+                 """
                 }
             }
         }
+
     }
 }
